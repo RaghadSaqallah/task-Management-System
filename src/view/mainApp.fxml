@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="rootPane" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainAppController">
+   <top>
+  <MenuBar fx:id="menuBar" styleClass="menu-bar">
+            <menus>
+                <Menu text="File">
+                    <items>
+                        <MenuItem fx:id="exitMenuItem" onAction="#exitHandle" text="Exit" />
+                    </items>
+                </Menu>
+                <Menu text="Appearance">
+                    <items>
+                        <Menu text="Font Family">
+                            <items>
+                        <RadioMenuItem fx:id="Arial" mnemonicParsing="false" onAction="#fontFamilyHandle" text="Arial">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="fontfamily" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem fx:id="Georgia" mnemonicParsing="false" onAction="#fontFamilyHandle" text="Georgia" toggleGroup="$fontfamily" />
+                        <RadioMenuItem fx:id="Verdana" mnemonicParsing="false" onAction="#fontFamilyHandle" text="Verdana" toggleGroup="$fontfamily" />
+                        <RadioMenuItem fx:id="Times_New_Roman" mnemonicParsing="false" onAction="#fontFamilyHandle" text="Times New Roman" toggleGroup="$fontfamily" />
+                            </items>
+                        </Menu>
+                        <Menu text="Font Size">
+                            <items>
+                        <RadioMenuItem fx:id="fontSize12" mnemonicParsing="false" onAction="#fontSizeHandle" text="12">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="fontSize" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem fx:id="fontSize14" mnemonicParsing="false" onAction="#fontSizeHandle" text="14" toggleGroup="$fontSize" />
+                        <RadioMenuItem fx:id="fontSize16" mnemonicParsing="false" onAction="#fontSizeHandle" text="16" toggleGroup="$fontSize" />
+                            </items>
+                        </Menu>
+                        <Menu text="Font Style">
+                            <items>
+                        <RadioMenuItem fx:id="fontNormalItem" mnemonicParsing="false" onAction="#fontStyleHandle" text="Normal">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="FontStyle" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem fx:id="fontBoldItem" mnemonicParsing="false" onAction="#fontStyleHandle" text="Bold" toggleGroup="$FontStyle" />
+                        <RadioMenuItem fx:id="fontItalicItem" mnemonicParsing="false" onAction="#fontStyleHandle" text="Italic" toggleGroup="$FontStyle" />
+                            </items>
+                        </Menu>
+                    </items>
+                </Menu>
+                <Menu text="Help">
+                    <items>
+                        <MenuItem fx:id="aboutMenuItem" onAction="#aboutHandle" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+   </top>
+
+   <left>
+      <VBox prefWidth="300.0" spacing="15.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ddd; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+         <children>
+            <Label text="Add New Task">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <GridPane vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="180.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Title:" />
+                  <TextField fx:id="titleField" GridPane.columnIndex="1" />
+                  <Label text="Status:" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="statusComboBox" prefWidth="180.0" promptText="Select Status" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Added By:" GridPane.rowIndex="2" />
+                  <TextField fx:id="addedBy" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Date:" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="datePicker" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <Button fx:id="addTaskBtn" maxWidth="Infinity" onAction="#addTaskBtnHandle" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Add Task" />
+            
+            <Separator prefWidth="200.0" />
+            
+            <Label text="Task Analysis">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" prefHeight="13.0" prefWidth="266.0" spacing="8.0">
+               <children>
+                  <Button maxWidth="Infinity" onAction="#highestNohandle" prefHeight="26.0" prefWidth="269.0" text="user with highest number of Task" />
+                  <Label fx:id="highestLable" prefHeight="27.0" prefWidth="91.0" text="0" textAlignment="RIGHT">
+                     <padding>
+                        <Insets bottom="5.0" left="9.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <Button maxWidth="Infinity" onAction="#topFourBtn" text="Show Earliest 4 Tasks" />
+            <Button maxWidth="Infinity" onAction="#filterBtn" text="Filter Tasks ('a' &amp; 7 letters)" />
+            <HBox fx:id="searchFiled" spacing="10.0">
+               <children>
+                  <TextField fx:id="searchUserField" prefHeight="26.0" prefWidth="0.0" promptText="Enter User Name" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="countLable" text="0" textAlignment="JUSTIFY">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding></Label>
+                  <Button fx:id="countBtn" onAction="#searchUserBtn" text="Count" />
+               </children>
+            </HBox>
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#ResetBtn" text="Reset" textAlignment="CENTER" />
+         </children>
+      </VBox>
+   </left>
+
+   <center>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <Label text="Task Dashboard">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
+            <HBox spacing="20.0" style="-fx-padding: 10;">
+               <children>
+                  <Label fx:id="totalTasksLabel" text="Total Tasks: 0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="openTasksLabel" text="Open: 0" textFill="#2e7d32">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="closedTasksLabel" text="Closed: 0" textFill="#c62828">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
